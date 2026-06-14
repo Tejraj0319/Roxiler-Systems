@@ -1,280 +1,340 @@
-(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/package.json)
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/package.json#1-1), lines 1 to 50
 
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/App.jsx)
 
-(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/api/axios.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/app/store.js)
 
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/main.jsx)
 
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/routes/AppRoutes.jsx)
 
-Collecting the remainder of app state, feature slices, and page/component files to build the report.
-
-(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src)
-
-(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features)
-
-(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/components)
-
-(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages)
-
-(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/components/ProtectedRoute.jsx)
-
-(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/app/store.js)
-
-(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/auth/authSlice.js)
-
-(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/auth/authThunk.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/auth/authSlice.js#1-1), lines 1 to 50
 
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/stores/storeSlice.js)
 
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/auth/authThunk.js)
+
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/stores/storeThunk.js)
 
-(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/ratings/ratingSlice.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/api/axios.js)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/components/ProtectedRoute.jsx)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages/Login.jsx#1-1), lines 1 to 60
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages/StoreList.jsx#1-1), lines 1 to 60
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages/StoreList.jsx#60-60), lines 60 to 200
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/ratings/ratingSlice.js#1-1), lines 1 to 50
 
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/ratings/ratingThunk.js)
 
-Found key state slices and API layer. Collecting pages and form components to finish architecture mapping.
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/components/forms)
 
-(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages/Login.jsx)
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages/Register.jsx#1-1), lines 1 to 50
 
-(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages/Register.jsx)
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages/ChangePassword.jsx#1-1), lines 1 to 50
 
-(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages/StoreList.jsx)
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/hooks)
 
-Checking styling setup and verifying unused dependencies for an accurate architecture report.
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/context)
 
-Searched for regex `next-themes|createTheme|useTheme|zustand|createStore|store = create|configureStore|className|tailwind` (`**/src/**/*.{js,jsx,css}`), 3 results
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/utils)
 
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/index.css)
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/package.json)
 
-I’ve completed the codebase scan and can now generate a full frontend technical reference covering architecture, routes, state management, components, API, and styling.
+I'll now provide you with a comprehensive architectural analysis of the **public-dashboard** project.
 
-## Frontend Technical Reference
+## 1. PROJECT OVERVIEW
 
-### 1. Architecture & Tech Stack Overview
+The **public-dashboard** is a **React-based Store Management and Rating Dashboard** application. It's a frontend system that enables authenticated users to browse a collection of stores, view store details, search/filter stores by name and address, sort stores by various criteria, and submit or update star ratings for individual stores. 
 
-**Framework**
-- React 19
-- Vite bundler / dev server
+**Core Purpose:**
+- User authentication (login/register/change password)
+- Browse and manage a public catalog of stores
+- Submit and update store ratings
+- Search, filter, and sort stores with dynamic data fetching
+- Protected routes requiring JWT-based authentication
 
-**Build Tooling**
-- `vite`
-- `@vitejs/plugin-react`
-- `ESLint` for linting
-- `Prettier` for formatting
-- `husky` + `lint-staged` for commit-time hooks
+**Tech Stack:**
+- **UI Framework:** React 19.2.6 with Vite as the build tool
+- **State Management:** Redux Toolkit 2.12.0 for global state
+- **HTTP Client:** Axios with JWT interceptors for API communication
+- **Routing:** React Router DOM 7.17.0
+- **Form Handling:** React Hook Form 7.79.0 with Yup/Zod validation
+- **Server Communication:** TanStack React Query 5.101.0 (installed but not extensively utilized)
 
-**CSS / Styling**
-- Tailwind CSS v4
-- Global styling is imported through index.css:
-  - `@import "tailwindcss";`
+## 2. FOLDER STRUCTURE & ARCHITECTURE
 
-**State Management**
-- Redux Toolkit (`@reduxjs/toolkit`)
-- React Redux (`react-redux`)
-- React Query present in dependencies, but not currently used in app code
-- Zustand present in dependencies, but not currently used in app code
+public-dashboard/
+│
+├── src/
+│   ├── main.jsx                      # Entry point with Redux & React Query providers
+│   ├── App.jsx                       # Root component rendering AppRoutes
+│   ├── index.css                     # Global styles (excluded from analysis)
+│   │
+│   ├── api/
+│   │   └── axios.js                  # HTTP client with JWT Bearer token interceptor
+│   │
+│   ├── app/
+│   │   └── store.js                  # Redux store configuration with auth/stores/ratings reducers
+│   │
+│   ├── routes/
+│   │   └── AppRoutes.jsx             # React Router configuration with protected routes
+│   │
+│   ├── components/
+│   │   ├── ProtectedRoute.jsx        # HOC for route protection (auth guard)
+│   │   └── forms/                    # (empty - placeholder for form components)
+│   │
+│   ├── features/                     # Redux feature modules (slice + thunk pattern)
+│   │   ├── auth/
+│   │   │   ├── authSlice.js          # Redux slice for auth state
+│   │   │   └── authThunk.js          # Async thunks: loginUser, registerUser, changePassword
+│   │   ├── stores/
+│   │   │   ├── storeSlice.js         # Redux slice for store list state
+│   │   │   └── storeThunk.js         # Async thunk: getStores
+│   │   └── ratings/
+│   │       ├── ratingSlice.js        # Redux slice for rating submission state
+│   │       └── ratingThunk.js        # Async thunks: submitRating, updateRating
+│   │
+│   ├── pages/                        # Route components
+│   │   ├── Login.jsx                 # (mostly commented) User login form
+│   │   ├── Register.jsx              # (mostly commented) User registration form
+│   │   ├── ChangePassword.jsx        # (mostly commented) Password change form
+│   │   └── StoreList.jsx             # Main dashboard: store listing, filtering, sorting, rating UI
+│   │
+│   ├── hooks/                        # (empty - reserved for custom hooks)
+│   ├── context/                      # (empty - reserved for Context API)
+│   └── utils/                        # (empty - reserved for utility functions)
+│
+├── public/                           # Static assets
+├── vite.config.js                    # Vite build configuration
+├── eslint.config.js                  # ESLint rules
+├── package.json                      # Dependencies & scripts
+└── index.html                        # HTML entry point
 
-**Forms and Validation**
-- `react-hook-form` used in registration page
-- `@hookform/resolvers` installed but not referenced in current code
-- `yup` and `zod` installed but not referenced in current code
+**Architecture Pattern:** **Feature-based modular architecture** with clear separation of concerns:
+- **API Layer:** Centralized Axios instance with JWT token injection
+- **State Management:** Redux Toolkit with async thunks for side effects
+- **Routing:** Route-based protection via ProtectedRoute component
+- **Pages:** Smart components that handle business logic
+- **Features:** Dumb slices managing state without side effects; thunks handling async operations
 
-**API / Network**
-- `axios` instance configured in axios.js
-- Query-string helper `qs` installed, not currently used
+## 3. CORE FUNCTIONALITIES
 
-**Additional Libraries**
-- `react-router-dom` v7 for routing
-- `react-icons` installed, not currently used
-- `react-toastify` installed, not currently used
-- `react-error-boundary` installed, not currently used
-- `framer-motion`, `dayjs`, `lodash`, `uuid`, `jwt-decode` installed but not currently used
+### **A. Authentication System**
+- **Login:** POST `/auth/login` → stores JWT token & user object in localStorage
+- **Register:** POST `/auth/register` → creates new user account
+- **Change Password:** PUT `/auth/change-password` → updates user password
+- **Logout:** Clears token & user from Redux state and localStorage
+- **Session Persistence:** Token/user hydrated on app load from localStorage
+- **Route Protection:** Unauthenticated users redirected to login
 
-### 2. Routing & Page Structure
+### **B. Store Browsing & Discovery**
+- **Fetch Stores:** GET `/stores` with optional query parameters
+- **Parameters Supported:**
+  - `name` – filter by store name (partial match)
+  - `address` – filter by store address (partial match)
+  - `sortBy` – sort field (e.g., "name", "rating")
+  - `order` – sort direction ("asc" or "desc")
+- **State Management:** Stores array, loading state, error state managed in Redux
+- **Pagination:** Not explicitly implemented (assumes paginated API)
 
-**Main routes file**
-- AppRoutes.jsx
+### **C. Store Ratings System**
+- **Submit Rating:** POST `/ratings` with `{ storeId, rating }` (1-5 stars)
+- **Update Rating:** PUT `/ratings/store/{storeId}` with `{ rating }`
+- **Local State:** User's current rating input tracked in component state per store
+- **Post-Action Refresh:** After rating submission/update, store list is refetched with current filters applied
 
-**Defined routes**
-- `/` → `Login` page
-- `/register` → `Register` page
-- `/stores` → `StoreList` page (protected)
+### **D. Search & Filter**
+- **Multi-field Search:** 
+  - Store name search (debounced on Enter key)
+  - Store address search (debounced on Enter key)
+  - Combo search with both fields simultaneously
+- **Sort Capabilities:**
+  - Default sort: "name" ascending
+  - Toggle sort direction by clicking sort field header
+  - Maintains current filters while changing sort
 
-**Route protection**
-- `ProtectedRoute` component in ProtectedRoute.jsx
-- Protects `/stores` by checking Redux auth state:
-  - `state.auth.isAuthenticated`
-- If unauthenticated, redirects to `/`
+### **E. User Interface Actions**
+- **Logout Button:** Clears auth state and redirects to login
+- **Change Password Button:** Navigates to dedicated password change page
+- **Rating Badge Display:** Visual indicator of store's average rating with color coding
+- **Star Input:** 5-star interactive input with hover preview
 
-**Public / Protected mapping**
+## 4. KEY COMPONENTS & MODULES
 
-| Route | Page Component | Protection ||
-| `/` | Login.jsx | Public |
-| `/register` | Register.jsx | Public |
-| `/stores` | StoreList.jsx | Protected |
+### **A. Redux Store Architecture**
 
-**Layout**
-- No shared layout wrapper or layout components found
-- App.jsx simply renders `<AppRoutes />`
-- No Navbar, Sidebar, or Footer layout component exists in current code
+#### **store.js** – Redux Store Configuration
+Reducer Map:
+├── auth       → authSlice (authentication state)
+├── stores     → storeSlice (store catalog state)
+└── ratings    → ratingSlice (rating submission state)
 
-### 3. Global & Local State Management
+#### **`features/auth/`**
+- **authSlice.js:**
+  - Initial state: `user`, `token`, `isAuthenticated`, `loading`, `error`, `registerSuccess`, `passwordChangeSuccess`
+  - Reducers: `logout`, `clearError`, `resetRegisterSuccess`, `resetPasswordChangeSuccess`
+  - Extra reducers handle async thunk states (pending/fulfilled/rejected)
+  - Persists token & user to localStorage
 
-**Redux store**
-- Configured in store.js
-- Global state slices:
-  - `auth`
-  - `stores`
-  - `ratings`
+- **authThunk.js:**
+  - `loginUser(loginData)` – async login action
+  - `registerUser(registerData)` – async registration action
+  - `changePassword(passwordData)` – async password change action
+  - Error handling extracts message from API response or provides fallback
 
-**Auth State (authSlice.js)**
-- `user`
-- `token`
-- `isAuthenticated`
-- `loading`
-- `error`
-- `registerSuccess`
-- Initializes from `localStorage`:
-  - `token`
-  - `user`
+#### **`features/stores/`**
+- **storeSlice.js:**
+  - Initial state: `stores` array, `loading`, `error`
+  - No synchronous reducers (stateless mutations)
+  - Extra reducers handle `getStores` async thunk states
+  - Loads data array into `state.stores`
 
-**Auth flow**
-- Async thunks in authThunk.js
-  - `loginUser`
-  - `registerUser`
-- `loginUser.fulfilled` stores:
-  - token + user in Redux
-  - token + user in localStorage
-- `logout` action clears Redux and localStorage
+- **storeThunk.js:**
+  - `getStores(params)` – fetches stores with optional filtering/sorting
+  - Extracts `response.data.data` (nested API response structure)
+  - Error fallback message: "Failed to fetch stores"
 
-**Stores State (storeSlice.js)**
-- `stores`
-- `loading`
-- `error`
-- Load triggered via `getStores` thunk
+#### **`features/ratings/`**
+- **ratingSlice.js:**
+  - Initial state: `loading`, `error`, `successMessage`
+  - Reducer: `clearRatingState` – resets error/success
+  - Extra reducers handle `submitRating` & `updateRating` states
+  - Tracks submission success with message text
 
-**Ratings State (ratingSlice.js)**
-- `loading`
-- `error`
-- `successMessage`
-- `submitRating` / `updateRating` async thunks
+- **ratingThunk.js:**
+  - `submitRating({ storeId, rating })` – POST new rating
+  - `updateRating({ storeId, id, rating })` – PUT existing rating (accepts either `storeId` or `id`)
+  - POST endpoint: `/ratings`
+  - PUT endpoint: `/ratings/store/{ratingId}`
 
-**Local component state**
-- Login.jsx
-  - local `formData`
-- StoreList.jsx
-  - `ratings` object for per-store rating input
-  - `searchName`
-  - `searchAddress`
+### **B. API Layer**
 
-**Data flow**
-- App entrypoint wraps with:
-  - `Provider` from `react-redux`
-  - `QueryClientProvider` from React Query (unused)
-  - `BrowserRouter`
-- Components dispatch Redux thunks for network actions
-- API auth token is obtained from `localStorage` on each request
-
-### 4. Component Hierarchy & Reusable UI
-
-**Core components**
-- ProtectedRoute.jsx
-  - authentication gate
-- No explicit layout components like Navbar, Footer, Sidebar
-
-**Pages**
-- Login.jsx
-- Register.jsx
-- StoreList.jsx
-
-**Reusable UI**
-- There are no dedicated atomic UI components present
-- All UI elements are inline in pages:
-  - `<input>`
-  - `<button>`
-  - `<label>`
-  - `<textarea>`
-- No separate button, modal, card, or field components found
-
-**Forms**
-- Login.jsx
-  - native inputs + local state
-  - uses Redux auth thunk
-- Register.jsx
-  - `react-hook-form` validation
-  - validation rules defined inline
-  - error display inline
-
-**Key custom hooks**
-- None found in hooks
-- No custom hook files are used
-
-### 5. API Integration & Data Fetching
-
-**Axios instance**
-- axios.js
+#### **`api/axios.js`**
 - Base URL: `http://localhost:5000`
-- Sets `Content-Type: application/json`
-- Adds `Authorization: Bearer <token>` header when `token` exists in `localStorage`
+- Default header: `Content-Type: application/json`
+- **Request Interceptor:**
+  - Injects JWT token from localStorage as `Authorization: Bearer {token}`
+  - Applies to all outgoing requests if token exists
+- No response interceptor (error handling delegated to thunks)
 
-**Network endpoints**
-- Auth
-  - `POST /auth/login`
-  - `POST /auth/register`
-- Stores
-  - `GET /stores`
-- Ratings
-  - `POST /ratings`
-  - `PUT /ratings/store/:ratingId`
+### **C. Routing Layer**
 
-**Data fetching pattern**
-- Redux Toolkit async thunks perform API calls
-- Thunks return `response.data` or reject payloads with error messages
-- UI components dispatch thunks and read Redux state
+#### **`routes/AppRoutes.jsx`**
+Routes:
+├── /              → Login (public)
+├── /register      → Register (public)
+├── /stores        → StoreList (protected)
+└── /change-password → ChangePassword (protected)
 
-**Loading / error handling**
-- Login.jsx
-  - disables submit button when `loading`
-  - displays `error` from auth slice
-- Register.jsx
-  - disables submit button when `loading`
-  - displays `error`
-- StoreList.jsx
-  - shows loading text when `stores.loading`
-  - shows error text when stores fetch fails
-  - no centralized error boundary or global notification system
+#### **`components/ProtectedRoute.jsx`**
+- Wraps protected routes
+- Checks Redux `auth.isAuthenticated` state
+- Redirects to `/` if not authenticated
+- Pattern: Higher-order component (HOC) pattern
 
-**API error handling**
-- Thunks extract:
-  - `error.response?.data?.message`
-  - fallback message string
-- Errors are stored in slice state and displayed in pages
+### **D. Page Components**
 
-### 6. Styling & Theme Implementation
+#### **`pages/Login.jsx`** (commented out)
+- Basic form with email/password inputs
+- Dispatches `loginUser` thunk on submit
+- Auto-redirects to `/stores` on successful login
+- Clears error state on unmount
 
-**Styling methodology**
-- Tailwind CSS is installed and imported globally
-- No Tailwind utility classes are used in the current page/component JSX
-- Inline `style={}` objects are used in StoreList.jsx for search inputs
-- The app currently relies on default browser styling for most layout
+#### **`pages/Register.jsx`** (commented out)
+- Uses React Hook Form for validation
+- Accepts user registration data
+- Redirects to login on successful registration
+- Error handling with form display
 
-**Theme / design system**
-- No theme provider or design token system found
-- `next-themes` dependency installed but not used
-- No dark/light theme handling in code
-- No CSS modules, styled-components, or theme file detected
+#### **`pages/ChangePassword.jsx`** (commented out)
+- Form with `oldPassword`, `newPassword`, `confirmPassword`
+- Client-side validation: confirms passwords match
+- Dispatches `changePassword` thunk
+- Redirects to `/stores` on success
 
-## Additional Observations
+#### **`pages/StoreList.jsx`** (primary implementation)
+- **State Management:**
+  - Redux: `stores`, `loading`, `error` (from store slice)
+  - Local: `ratings` (map of storeId → rating value), `searchName`, `searchAddress`, `sortBy`, `order`
+  
+- **Data Flow:**
+  1. On mount: Fetches stores with default sort (name, asc)
+  2. User enters search criteria & clicks search → refetches with filters
+  3. User clicks sort column → refetches with new sort/order
+  4. User selects star rating & submits → dispatches submitRating/updateRating → refetches list
+  5. Reset button clears filters & returns to default view
 
-- **Unused dependencies**: `zustand`, `@tanstack/react-query`, `react-toastify`, `react-icons`, `react-error-boundary`, `dayjs`, `lodash`, `uuid`, `jwt-decode`, `next-themes`, `qs`, `zod`, `yup` are present in package.json but not presently referenced in source files.
-- **Incomplete architecture**: App is minimal and not yet built around a reusable UI system or robust layout structure.
-- **Potential improvements**
-  - Add a shared layout component for app shell
-  - Extract form field and button components
-  - Use Tailwind classes consistently instead of inline styles
-  - Remove unused packages or add actual use cases
-  - Implement React Query or Zustand only if you want their features; otherwise simplify dependency set
+- **Rating Display & Input:**
+  - `RatingBadge` component: Displays average rating with color-coded ring
+  - `StarInput` component: Interactive 5-star selector with hover preview
+  - Color scheme: Green ≥4, Amber ≥2.5, Red <2.5
+
+- **Key Actions:**
+  - `handleSearch()` – fetches stores with name/address filters
+  - `handleReset()` – clears all filters and sorts
+  - `handleRatingChange()` – updates local rating state
+  - `handleSubmitRating()` – validates (1-5 range) and POSTs rating
+  - `handleUpdateRating()` – validates and PUTs updated rating
+  - `handleSortClick()` – toggles sort direction and refetches
+  - `handleLogout()` – clears auth state and redirects
+  - `handleChangePassword()` – navigates to password change page
+
+## 5. KEY DEPENDENCIES & THEIR ROLES
+
+| Package | Version | Purpose ||
+| `@reduxjs/toolkit` | ^2.12.0 | State management with slices & async thunks |
+| `react-redux` | ^9.3.0 | Redux integration for React |
+| `react-router-dom` | ^7.17.0 | Client-side routing & navigation |
+| `axios` | ^1.17.0 | HTTP client for API requests |
+| `jwt-decode` | ^4.0.0 | JWT token decoding (installed but not actively used) |
+| `react-hook-form` | ^7.79.0 | Form state & validation (forms commented out) |
+| `@hookform/resolvers` | ^5.4.0 | Schema validation integration |
+| `yup` & `zod` | Latest | Schema validation libraries (installed but minimal usage) |
+| `@tanstack/react-query` | ^5.101.0 | Server state management (installed but not used) |
+| `react-error-boundary` | ^6.1.2 | Error boundary component support |
+| `dayjs` | ^1.11.21 | Date/time utilities (not actively used) |
+| `lodash` | ^4.18.1 | Utility functions |
+
+## 6. DATA FLOW SUMMARY
+
+User Action
+    ↓
+React Component (local state update)
+    ↓
+Dispatch Redux Action/Thunk
+    ↓
+Axios API Call (with JWT interceptor)
+    ↓
+Backend API Response
+    ↓
+Thunk fulfilled/rejected
+    ↓
+Redux Slice updates state
+    ↓
+Component re-renders with new state
+
+## 7. AUTHENTICATION FLOW
+
+1. User logs in (Login page)
+   → dispatch loginUser({ email, password })
+   → POST /auth/login
+   → Response: { token, user }
+   → Store in Redux state + localStorage
+   → Set isAuthenticated = true
+   → Auto-redirect to /stores
+
+2. All subsequent API calls
+   → Request interceptor injects Authorization header
+   → Bearer token sent with every request
+
+3. User logs out
+   → dispatch logout()
+   → Clear state & localStorage
+   → Redirect to /
+
+4. Protected routes check Redux state
+   → If !isAuthenticated → redirect to /

@@ -88,8 +88,18 @@ function StoreList() {
     dispatch(getStores({ sortBy: "name", order: "asc" }));
   };
 
+  // const handleRatingChange = (storeId, value) => {
+  //   setRatings((prev) => ({ ...prev, [storeId]: value }));
+  // };
+
   const handleRatingChange = (storeId, value) => {
-    setRatings((prev) => ({ ...prev, [storeId]: value }));
+    console.log("Store ID:", storeId);
+    console.log("Selected Rating:", value);
+
+    setRatings((prev) => ({
+      ...prev,
+      [storeId]: value,
+    }));
   };
 
   const handleSubmitRating = async (storeId) => {
