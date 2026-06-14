@@ -1,0 +1,206 @@
+Optimized tool selectionReviewing the main project files and state management structure now.
+(file:///e%3A/Tesks/Roxiler%20Systems/owner-dashboard/package.json)
+(file:///e%3A/Tesks/Roxiler%20Systems/owner-dashboard/src/App.jsx)
+(file:///e%3A/Tesks/Roxiler%20Systems/owner-dashboard/src/app/store.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/owner-dashboard/README.md)
+(file:///e%3A/Tesks/Roxiler%20Systems/owner-dashboard/src/routes/AppRoutes.jsx)
+
+Gathering the core state, service, and route implementations for the app.
+(file:///e%3A/Tesks/Roxiler%20Systems/owner-dashboard/src/api/axios.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/owner-dashboard/src/features/auth/authSlice.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/owner-dashboard/src/features/auth/authThunk.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/owner-dashboard/src/features/owner/ownerSlice.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/owner-dashboard/src/features/owner/ownerThunk.js)
+
+Next I’m mapping the frontend route guards and page-level data flows.
+(file:///e%3A/Tesks/Roxiler%20Systems/owner-dashboard/src/components/ProtectedRoute.jsx)
+(file:///e%3A/Tesks/Roxiler%20Systems/owner-dashboard/src/pages/Login.jsx)
+(file:///e%3A/Tesks/Roxiler%20Systems/owner-dashboard/src/pages/Dashboard.jsx)
+(file:///e%3A/Tesks/Roxiler%20Systems/owner-dashboard/src/pages/ChangePassword.jsx)
+(file:///e%3A/Tesks/Roxiler%20Systems/owner-dashboard/src/main.jsx)
+
+Checking for backend-related route references and any server-side code in the repo.
+
+Searched for regex `auth/login|auth/change-password|owner/dashboard|createAsyncThunk|api.post\("/auth/login|api.get\("/owner/dashboard` (`**/*.{js,jsx,json,md}`), 9 results
+
+I’m verifying whether any backend schema or model files exist in the current workspace.
+
+Searched for regex `prisma|mongoose|schema|models|db\.|database|Mongo|Postgres|SQLite` (`**/*.{js,jsx,ts,tsx,json,md}`), 23 results
+
+## 1. High-Level Overview
+
+This is a React single-page application built with Vite that serves as an owner-facing dashboard for store owners. Its core purpose is to authenticate a store owner, authorize only the `STORE_OWNER` role, and present an owner dashboard with store data and ratings. The app is frontend-only in this workspace; it integrates with a backend API hosted at `http://localhost:5000`.
+
+## 2. Folder Structure Breakdown
+
+- package.json
+  - Defines dependencies and scripts.
+  - Confirms React, Redux Toolkit, React Router, axios, and Zustand are present.
+
+- src
+  - main.jsx
+    - Bootstraps the app.
+    - Wraps the app in `Redux Provider` and `React Query Provider`.
+  - App.jsx
+    - Minimal root component that renders `AppRoutes`.
+  - `routes/AppRoutes.jsx`
+    - Defines route structure and applies protection to private routes.
+  - `components/ProtectedRoute.jsx`
+    - Implements route-level authorization based on Redux auth state.
+  - `api/axios.js`
+    - Axios instance with `baseURL` and request interceptor to attach `Authorization: Bearer <token>`.
+  - `app/store.js`
+    - Configures Redux store with feature slices.
+  - `features/auth/`
+    - authSlice.js: authentication state, token persistence, error handling, logout, password change success flag.
+    - authThunk.js: async requests for login and password change.
+  - `features/owner/`
+    - ownerSlice.js: dashboard data state and loading/error handling.
+    - ownerThunk.js: async request for owner dashboard data.
+  - `pages/`
+    - Login.jsx: login flow.
+    - Dashboard.jsx: owner dashboard view with store and rating details.
+    - ChangePassword.jsx: password update form.
+
+Architectural pattern:
+- Feature-based organization with Redux Toolkit slices per domain (`auth`, `owner`).
+- React Router for page routing.
+- Centralized API client for backend communication.
+- Local storage persistence for auth token and user data.
+
+## 3. Core Functionalities
+
+- Authentication
+  - Login with email/password.
+  - Stores JWT token and user payload in `localStorage`.
+
+- Authorization / Route protection
+  - Only authenticated users with `user.role === "STORE_OWNER"` can access dashboard and password change pages.
+
+- Dashboard data retrieval
+  - Fetches owner dashboard data from `/owner/dashboard`.
+  - Renders stores and rating details.
+
+- Password management
+  - Sends password change requests to `/auth/change-password`.
+
+- Client-side session management
+  - Logout clears local storage and Redux auth state.
+  - Redirects to `/dashboard` after successful login.
+  - Redirects unauthorized or unauthenticated users back to login.
+
+- Store/rating exploration
+  - Dashboard displays a list of stores and toggles details for each store.
+  - Shows rating entries per store.
+
+## 4. Key Files & Database Schema
+
+Important configuration and state files:
+- package.json
+- axios.js
+- store.js
+- authSlice.js
+- authThunk.js
+- ownerSlice.js
+- ownerThunk.js
+- AppRoutes.jsx
+- ProtectedRoute.jsx
+
+Database / schema notes:
+- No backend source code, schema file, or database model file exists in this repo.
+- Data model is inferred from API payloads used by the frontend.
+
+Inferred entities:
+- `user`
+  - `name`
+  - `email`
+  - `role`
+- `auth` payload
+  - `token`
+  - `user`
+- `dashboard`
+  - `stores` array
+- `store`
+  - `storeId`
+  - `storeName`
+  - `averageRating`
+  - `ratedUsers`
+- `ratedUser`
+  - `userId`
+  - `name`
+  - `email`
+  - `rating`
+- Password change request
+  - `oldPassword`
+  - `newPassword`
+
+## 5. Component Breakdown (Frontend)
+
+- Routing / layout
+  - AppRoutes.jsx
+    - Public route: `/`
+    - Protected routes: `/dashboard`, `/change-password`
+  - ProtectedRoute.jsx
+    - Guards protected route access based on auth state.
+
+- Authentication Forms
+  - Login.jsx
+    - Handles login form state.
+    - Dispatches `loginUser`.
+    - Redirects authenticated owners to dashboard.
+    - Displays API errors.
+
+- Owner dashboard
+  - Dashboard.jsx
+    - Loads dashboard data on mount.
+    - Uses Redux state for `dashboard`, `loading`, and `error`.
+    - Displays store list and expands store rating rows.
+    - Provides logout and password-change navigation.
+  - Logical behaviors:
+    - treats backend response either as a single dashboard object or array of stores.
+    - uses local state to expand/collapse store sections.
+
+- Account management
+  - ChangePassword.jsx
+    - Handles old/new password input.
+    - Validates confirm password match.
+    - Dispatches `changePassword`.
+    - Redirects back to dashboard after success.
+
+- App shell
+  - App.jsx
+    - Renders route layer.
+  - main.jsx
+    - Initializes providers.
+
+## 6. API Endpoints / Data Flow
+
+Frontend interacts with backend through a single Axios instance:
+- axios.js
+  - `baseURL: http://localhost:5000`
+  - attaches `Authorization` header from `localStorage.token`
+
+Implemented endpoints:
+- `POST /auth/login`
+  - Used by `loginUser`.
+  - Expects login credentials.
+  - Returns `data` containing `{ token, user }`.
+  - Frontend enforces `STORE_OWNER` role before allowing login success.
+
+- `PUT /auth/change-password`
+  - Used by `changePassword`.
+  - Sends `{ oldPassword, newPassword }`.
+
+- `GET /owner/dashboard`
+  - Used by `getOwnerDashboard`.
+  - Returns owner dashboard data with store ratings.
+
+Data flow:
+1. User submits login form.
+2. `loginUser` thunk posts to `/auth/login`.
+3. On success, auth slice stores token, user, and sets `isAuthenticated`.
+4. ProtectedRoute validates auth + role and allows access.
+5. Dashboard page dispatches `getOwnerDashboard` thunk.
+6. Dashboard slice stores returned dashboard data.
+7. Dashboard.jsx renders stores + ratings from Redux state.
+8. ChangePassword.jsx dispatches password update and reacts to success.

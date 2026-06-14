@@ -2,10 +2,7 @@ const OwnerService = require(
     "./owner.service"
 );
 
-const dashboard = async (
-    req,
-    res
-) => {
+const dashboard = async (req, res) => {
     try {
         const data =
             await OwnerService.getDashboard(
