@@ -1,0 +1,463 @@
+# Roxiler Systems - Store Rating Platform
+
+## Tech Stack
+
+### Backend
+
+* Node.js
+* Express.js
+* Prisma ORM
+* MySQL
+* JWT Authentication
+* bcryptjs
+* Joi Validation
+
+### Frontend (Pending)
+
+* React.js
+
+# Project Structure
+
+backend
+│
+├── prisma
+│   └── schema.prisma
+│
+├── src
+│   │
+│   ├── config
+│   │   └── prisma.js
+│   │
+│   ├── middleware
+│   │   ├── auth.middleware.js
+│   │   └── role.middleware.js
+│   │
+│   ├── modules
+│   │   │
+│   │   ├── auth
+│   │   │   ├── auth.controller.js
+│   │   │   ├── auth.service.js
+│   │   │   ├── auth.routes.js
+│   │   │   └── auth.validator.js
+│   │   │
+│   │   ├── admin
+│   │   │   ├── admin.controller.js
+│   │   │   ├── admin.service.js
+│   │   │   ├── admin.routes.js
+│   │   │   └── admin.validator.js
+│   │   │
+│   │   ├── store
+│   │   │   ├── store.controller.js
+│   │   │   ├── store.service.js
+│   │   │   └── store.routes.js
+│   │   │
+│   │   ├── rating
+│   │   │   ├── rating.controller.js
+│   │   │   ├── rating.service.js
+│   │   │   ├── rating.routes.js
+│   │   │   └── rating.validator.js
+│   │   │
+│   │   └── owner
+│   │       ├── owner.controller.js
+│   │       ├── owner.service.js
+│   │       └── owner.routes.js
+│   │
+│   └── app.js
+│
+├── .env
+├── server.js
+└── package.json
+
+# Database
+
+Database Name:
+
+roxiler_store_rating
+
+## Role Enum
+
+ADMIN
+
+USER
+
+STORE_OWNER
+
+## User Table
+
+Fields
+
+* id
+* name
+* email
+* password
+* address
+* role
+* createdAt
+* updatedAt
+
+## Store Table
+
+Fields
+
+* id
+* name
+* email
+* address
+* ownerId
+* createdAt
+* updatedAt
+
+Relationship
+
+Store belongs to Store Owner.
+
+## Rating Table
+
+Fields
+
+* id
+* userId
+* storeId
+* rating
+* createdAt
+* updatedAt
+
+Constraint
+
+One user can rate one store only once.
+
+@@unique([userId, storeId])
+
+# Authentication Module
+
+Completed
+
+## Register
+
+POST /auth/register
+
+Fields
+
+* name
+* email
+* address
+* password
+
+Role assigned automatically
+
+USER
+
+## Login
+
+POST /auth/login
+
+Returns
+
+* JWT Token
+* User Details
+
+## Change Password
+
+PUT /auth/change-password
+
+Protected Route
+
+Requires JWT Token
+
+# Middleware
+
+## auth.middleware.js
+
+Responsibilities
+
+* Verify JWT Token
+* Extract User ID
+* Extract User Role
+* Attach user data to req.user
+
+## role.middleware.js
+
+Responsibilities
+
+Role based authorization
+
+Supported Roles
+
+* ADMIN
+* USER
+* STORE_OWNER
+
+# Admin Module
+
+Protected Routes
+
+Requires
+
+ADMIN Role
+
+## Dashboard
+
+GET /admin/dashboard
+
+Returns
+
+* Total Users
+* Total Stores
+* Total Ratings
+
+## User Management
+
+### Create User
+
+POST /admin/users
+
+Can Create
+
+* ADMIN
+* USER
+* STORE_OWNER
+
+Fields
+
+* name
+* email
+* address
+* password
+* role
+
+### List Users
+
+GET /admin/users
+
+Supports Filters
+
+* name
+* email
+* address
+* role
+
+Supports Sorting
+
+* name
+* email
+* role
+
+Examples
+
+/admin/users?role=STORE_OWNER
+
+/admin/users?name=Rajesh
+
+/admin/users?sortBy=email&order=desc
+
+### User Details
+
+GET /admin/users/:id
+
+Returns
+
+* id
+* name
+* email
+* address
+* role
+
+## Store Management
+
+### Create Store
+
+POST /admin/stores
+
+Fields
+
+* name
+* email
+* address
+* ownerId
+
+Store can only be assigned to STORE_OWNER.
+
+### List Stores
+
+GET /admin/stores
+
+Supports Filters
+
+* name
+* email
+* address
+
+Supports Sorting
+
+* name
+* email
+
+Returns
+
+* Store Name
+* Email
+* Address
+* Average Rating
+
+### Store Details
+
+GET /admin/stores/:id
+
+Returns
+
+* Store Details
+* Store Owner Details
+* Ratings
+* Average Rating
+
+# User Store Module
+
+Protected Route
+
+Requires Login
+
+## List Stores
+
+GET /stores
+
+Supports Search
+
+* name
+* address
+
+Supports Sorting
+
+* name
+
+Returns
+
+* Store ID
+* Store Name
+* Address
+* Overall Rating
+* Logged In User Rating
+
+Examples
+
+/stores?name=Tech
+
+/stores?address=Pune
+
+/stores?sortBy=name&order=desc
+
+# Rating Module
+
+Protected Route
+
+Requires Login
+
+## Submit Rating
+
+POST /ratings
+
+Fields
+
+* storeId
+* rating
+
+Rating Range
+
+1 to 5
+
+User can submit only one rating per store.
+
+## Update Rating
+
+PUT /ratings/:id
+
+Fields
+
+* rating
+
+Allows user to modify existing rating.
+
+# Store Owner Module
+
+Protected Route
+
+Requires STORE_OWNER Role
+
+## Store Owner Dashboard
+
+GET /owner/dashboard
+
+Returns
+
+* Store ID
+* Store Name
+* Average Rating
+* Users Who Submitted Ratings
+
+Each Rated User Contains
+
+* User ID
+* Name
+* Email
+* Submitted Rating
+
+# Validation Rules
+
+Name
+
+* Minimum 20 Characters
+* Maximum 60 Characters
+
+Address
+
+* Maximum 400 Characters
+
+Password
+
+* 8 to 16 Characters
+* At least one Uppercase Letter
+* At least one Special Character
+
+Email
+
+* Standard Email Validation
+
+Validation Library
+
+Joi
+
+# Backend Status
+
+Authentication Module
+Completed
+
+Admin Module
+Completed
+
+Store Module
+Completed
+
+Rating Module
+Completed
+
+Store Owner Module
+Completed
+
+JWT Authentication
+Completed
+
+Role Based Authorization
+Completed
+
+Filtering
+Completed
+
+Sorting
+Completed
+
+MySQL Database
+Completed
+
+Prisma ORM
+Completed
+
+Backend Ready For Frontend Development
