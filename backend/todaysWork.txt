@@ -1,58 +1,30 @@
-Optimized tool selectionI'll conduct a comprehensive analysis of your backend codebase and generate detailed technical documentation. Let me start by scanning all the key files.    
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/package.json)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/prisma/schema.prisma)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/server.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/app.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/config/db.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/config/prisma.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/middleware/auth.middleware.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/middleware/role.middleware.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/auth/auth.routes.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/admin/admin.routes.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/ratings/rating.routes.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/owner/owner.routes.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/stores/store.routes.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/auth/auth.controller.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/ratings/rating.controller.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/stores/store.controller.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/owner/owner.controller.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/admin/admin.controller.js#1-1), lines 1 to 200
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/auth/auth.service.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/admin/admin.service.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/ratings/rating.service.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/stores/store.service.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/owner/owner.service.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/auth/auth.validator.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/admin/admin.validator.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/ratings/rating.validator.js)
-
-Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/utils/response.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/package.json)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/prisma/schema.prisma)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/server.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/app.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/config/db.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/config/prisma.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/middleware/auth.middleware.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/middleware/role.middleware.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/auth/auth.routes.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/admin/admin.routes.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/ratings/rating.routes.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/owner/owner.routes.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/stores/store.routes.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/auth/auth.controller.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/ratings/rating.controller.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/stores/store.controller.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/owner/owner.controller.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/admin/admin.controller.js#1-1), lines 1 to 200
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/auth/auth.service.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/admin/admin.service.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/ratings/rating.service.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/stores/store.service.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/owner/owner.service.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/auth/auth.validator.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/admin/admin.validator.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/ratings/rating.validator.js)
+(file:///e%3A/Tesks/Roxiler%20Systems/backend/src/utils/response.js)
 
 Now I'll create a comprehensive technical documentation report of your backend codebase.
 
@@ -683,7 +655,6 @@ ratingSchema.validate({
 | **Sensitive Data** | No passwords in responses | Good |
 
 ## **Additional Notes**
-
 ### **Database Migrations**
 - Prisma migrations tracked in migrations
 - Current migration: `20260613153631_init` (schema initialization)

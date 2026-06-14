@@ -1,47 +1,25 @@
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/package.json#1-1), lines 1 to 50
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/App.jsx)
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/app/store.js)
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/main.jsx)
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/routes/AppRoutes.jsx)
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/auth/authSlice.js#1-1), lines 1 to 50
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/stores/storeSlice.js)
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/auth/authThunk.js)
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/stores/storeThunk.js)
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/api/axios.js)
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/components/ProtectedRoute.jsx)
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages/Login.jsx#1-1), lines 1 to 60
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages/StoreList.jsx#1-1), lines 1 to 60
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages/StoreList.jsx#60-60), lines 60 to 200
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/ratings/ratingSlice.js#1-1), lines 1 to 50
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/ratings/ratingThunk.js)
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/components/forms)
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages/Register.jsx#1-1), lines 1 to 50
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages/ChangePassword.jsx#1-1), lines 1 to 50
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/hooks)
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/context)
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/utils)
-
 (file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/package.json)
 
 I'll now provide you with a comprehensive architectural analysis of the **public-dashboard** project.
