@@ -1,0 +1,280 @@
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/package.json)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/App.jsx)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/api/axios.js)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/main.jsx)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/routes/AppRoutes.jsx)
+
+Collecting the remainder of app state, feature slices, and page/component files to build the report.
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/components)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/components/ProtectedRoute.jsx)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/app/store.js)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/auth/authSlice.js)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/auth/authThunk.js)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/stores/storeSlice.js)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/stores/storeThunk.js)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/ratings/ratingSlice.js)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/features/ratings/ratingThunk.js)
+
+Found key state slices and API layer. Collecting pages and form components to finish architecture mapping.
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/components/forms)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages/Login.jsx)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages/Register.jsx)
+
+(file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/pages/StoreList.jsx)
+
+Checking styling setup and verifying unused dependencies for an accurate architecture report.
+
+Searched for regex `next-themes|createTheme|useTheme|zustand|createStore|store = create|configureStore|className|tailwind` (`**/src/**/*.{js,jsx,css}`), 3 results
+
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/public-dashboard/src/index.css)
+
+I’ve completed the codebase scan and can now generate a full frontend technical reference covering architecture, routes, state management, components, API, and styling.
+
+## Frontend Technical Reference
+
+### 1. Architecture & Tech Stack Overview
+
+**Framework**
+- React 19
+- Vite bundler / dev server
+
+**Build Tooling**
+- `vite`
+- `@vitejs/plugin-react`
+- `ESLint` for linting
+- `Prettier` for formatting
+- `husky` + `lint-staged` for commit-time hooks
+
+**CSS / Styling**
+- Tailwind CSS v4
+- Global styling is imported through index.css:
+  - `@import "tailwindcss";`
+
+**State Management**
+- Redux Toolkit (`@reduxjs/toolkit`)
+- React Redux (`react-redux`)
+- React Query present in dependencies, but not currently used in app code
+- Zustand present in dependencies, but not currently used in app code
+
+**Forms and Validation**
+- `react-hook-form` used in registration page
+- `@hookform/resolvers` installed but not referenced in current code
+- `yup` and `zod` installed but not referenced in current code
+
+**API / Network**
+- `axios` instance configured in axios.js
+- Query-string helper `qs` installed, not currently used
+
+**Additional Libraries**
+- `react-router-dom` v7 for routing
+- `react-icons` installed, not currently used
+- `react-toastify` installed, not currently used
+- `react-error-boundary` installed, not currently used
+- `framer-motion`, `dayjs`, `lodash`, `uuid`, `jwt-decode` installed but not currently used
+
+### 2. Routing & Page Structure
+
+**Main routes file**
+- AppRoutes.jsx
+
+**Defined routes**
+- `/` → `Login` page
+- `/register` → `Register` page
+- `/stores` → `StoreList` page (protected)
+
+**Route protection**
+- `ProtectedRoute` component in ProtectedRoute.jsx
+- Protects `/stores` by checking Redux auth state:
+  - `state.auth.isAuthenticated`
+- If unauthenticated, redirects to `/`
+
+**Public / Protected mapping**
+
+| Route | Page Component | Protection ||
+| `/` | Login.jsx | Public |
+| `/register` | Register.jsx | Public |
+| `/stores` | StoreList.jsx | Protected |
+
+**Layout**
+- No shared layout wrapper or layout components found
+- App.jsx simply renders `<AppRoutes />`
+- No Navbar, Sidebar, or Footer layout component exists in current code
+
+### 3. Global & Local State Management
+
+**Redux store**
+- Configured in store.js
+- Global state slices:
+  - `auth`
+  - `stores`
+  - `ratings`
+
+**Auth State (authSlice.js)**
+- `user`
+- `token`
+- `isAuthenticated`
+- `loading`
+- `error`
+- `registerSuccess`
+- Initializes from `localStorage`:
+  - `token`
+  - `user`
+
+**Auth flow**
+- Async thunks in authThunk.js
+  - `loginUser`
+  - `registerUser`
+- `loginUser.fulfilled` stores:
+  - token + user in Redux
+  - token + user in localStorage
+- `logout` action clears Redux and localStorage
+
+**Stores State (storeSlice.js)**
+- `stores`
+- `loading`
+- `error`
+- Load triggered via `getStores` thunk
+
+**Ratings State (ratingSlice.js)**
+- `loading`
+- `error`
+- `successMessage`
+- `submitRating` / `updateRating` async thunks
+
+**Local component state**
+- Login.jsx
+  - local `formData`
+- StoreList.jsx
+  - `ratings` object for per-store rating input
+  - `searchName`
+  - `searchAddress`
+
+**Data flow**
+- App entrypoint wraps with:
+  - `Provider` from `react-redux`
+  - `QueryClientProvider` from React Query (unused)
+  - `BrowserRouter`
+- Components dispatch Redux thunks for network actions
+- API auth token is obtained from `localStorage` on each request
+
+### 4. Component Hierarchy & Reusable UI
+
+**Core components**
+- ProtectedRoute.jsx
+  - authentication gate
+- No explicit layout components like Navbar, Footer, Sidebar
+
+**Pages**
+- Login.jsx
+- Register.jsx
+- StoreList.jsx
+
+**Reusable UI**
+- There are no dedicated atomic UI components present
+- All UI elements are inline in pages:
+  - `<input>`
+  - `<button>`
+  - `<label>`
+  - `<textarea>`
+- No separate button, modal, card, or field components found
+
+**Forms**
+- Login.jsx
+  - native inputs + local state
+  - uses Redux auth thunk
+- Register.jsx
+  - `react-hook-form` validation
+  - validation rules defined inline
+  - error display inline
+
+**Key custom hooks**
+- None found in hooks
+- No custom hook files are used
+
+### 5. API Integration & Data Fetching
+
+**Axios instance**
+- axios.js
+- Base URL: `http://localhost:5000`
+- Sets `Content-Type: application/json`
+- Adds `Authorization: Bearer <token>` header when `token` exists in `localStorage`
+
+**Network endpoints**
+- Auth
+  - `POST /auth/login`
+  - `POST /auth/register`
+- Stores
+  - `GET /stores`
+- Ratings
+  - `POST /ratings`
+  - `PUT /ratings/store/:ratingId`
+
+**Data fetching pattern**
+- Redux Toolkit async thunks perform API calls
+- Thunks return `response.data` or reject payloads with error messages
+- UI components dispatch thunks and read Redux state
+
+**Loading / error handling**
+- Login.jsx
+  - disables submit button when `loading`
+  - displays `error` from auth slice
+- Register.jsx
+  - disables submit button when `loading`
+  - displays `error`
+- StoreList.jsx
+  - shows loading text when `stores.loading`
+  - shows error text when stores fetch fails
+  - no centralized error boundary or global notification system
+
+**API error handling**
+- Thunks extract:
+  - `error.response?.data?.message`
+  - fallback message string
+- Errors are stored in slice state and displayed in pages
+
+### 6. Styling & Theme Implementation
+
+**Styling methodology**
+- Tailwind CSS is installed and imported globally
+- No Tailwind utility classes are used in the current page/component JSX
+- Inline `style={}` objects are used in StoreList.jsx for search inputs
+- The app currently relies on default browser styling for most layout
+
+**Theme / design system**
+- No theme provider or design token system found
+- `next-themes` dependency installed but not used
+- No dark/light theme handling in code
+- No CSS modules, styled-components, or theme file detected
+
+## Additional Observations
+
+- **Unused dependencies**: `zustand`, `@tanstack/react-query`, `react-toastify`, `react-icons`, `react-error-boundary`, `dayjs`, `lodash`, `uuid`, `jwt-decode`, `next-themes`, `qs`, `zod`, `yup` are present in package.json but not presently referenced in source files.
+- **Incomplete architecture**: App is minimal and not yet built around a reusable UI system or robust layout structure.
+- **Potential improvements**
+  - Add a shared layout component for app shell
+  - Extract form field and button components
+  - Use Tailwind classes consistently instead of inline styles
+  - Remove unused packages or add actual use cases
+  - Implement React Query or Zustand only if you want their features; otherwise simplify dependency set

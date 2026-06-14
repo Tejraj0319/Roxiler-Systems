@@ -35,29 +35,23 @@ const submitRating = async (userId, storeId, rating) => {
     });
 };
 
-const updateRating = async (ratingId, userId, rating) => {
-    const existingRating = await prisma.rating.findUnique({
+
+const updateRating = async (storeId, userId, rating) => {
+    const existingRating = await prisma.rating.findFirst({
         where: {
-            id: Number(ratingId),
+            storeId: Number(storeId),
+            userId: Number(userId),
         },
     });
-
     if (!existingRating) {
-        throw new Error("Rating not found");
+        throw new Error("Rating record not found for this store by this user.");
     }
-
-    if (existingRating.userId !== userId) {
-        throw new Error(
-            "Unauthorized update"
-        );
-    }
-
     return prisma.rating.update({
         where: {
-            id: Number(ratingId),
+            id: existingRating.id,
         },
         data: {
-            rating,
+            rating: Number(rating),
         },
     });
 };

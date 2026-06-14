@@ -1,463 +1,699 @@
-# Roxiler Systems - Store Rating Platform
-
-## Tech Stack
-
-### Backend
-
-* Node.js
-* Express.js
-* Prisma ORM
-* MySQL
-* JWT Authentication
-* bcryptjs
-* Joi Validation
-
-### Frontend (Pending)
-
-* React.js
-
-# Project Structure
-
-backend
-│
-├── prisma
-│   └── schema.prisma
-│
-├── src
-│   │
-│   ├── config
-│   │   └── prisma.js
-│   │
-│   ├── middleware
-│   │   ├── auth.middleware.js
-│   │   └── role.middleware.js
-│   │
-│   ├── modules
-│   │   │
-│   │   ├── auth
-│   │   │   ├── auth.controller.js
-│   │   │   ├── auth.service.js
-│   │   │   ├── auth.routes.js
-│   │   │   └── auth.validator.js
-│   │   │
-│   │   ├── admin
-│   │   │   ├── admin.controller.js
-│   │   │   ├── admin.service.js
-│   │   │   ├── admin.routes.js
-│   │   │   └── admin.validator.js
-│   │   │
-│   │   ├── store
-│   │   │   ├── store.controller.js
-│   │   │   ├── store.service.js
-│   │   │   └── store.routes.js
-│   │   │
-│   │   ├── rating
-│   │   │   ├── rating.controller.js
-│   │   │   ├── rating.service.js
-│   │   │   ├── rating.routes.js
-│   │   │   └── rating.validator.js
-│   │   │
-│   │   └── owner
-│   │       ├── owner.controller.js
-│   │       ├── owner.service.js
-│   │       └── owner.routes.js
-│   │
-│   └── app.js
-│
-├── .env
-├── server.js
-└── package.json
+Optimized tool selectionI'll conduct a comprehensive analysis of your backend codebase and generate detailed technical documentation. Let me start by scanning all the key files.    
 
-# Database
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/package.json)
 
-Database Name:
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/prisma/schema.prisma)
 
-roxiler_store_rating
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/server.js)
 
-## Role Enum
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/app.js)
 
-ADMIN
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/config/db.js)
 
-USER
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/config/prisma.js)
 
-STORE_OWNER
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/middleware/auth.middleware.js)
 
-## User Table
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/middleware/role.middleware.js)
 
-Fields
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/auth/auth.routes.js)
 
-* id
-* name
-* email
-* password
-* address
-* role
-* createdAt
-* updatedAt
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/admin/admin.routes.js)
 
-## Store Table
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/ratings/rating.routes.js)
 
-Fields
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/owner/owner.routes.js)
 
-* id
-* name
-* email
-* address
-* ownerId
-* createdAt
-* updatedAt
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/stores/store.routes.js)
 
-Relationship
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/auth/auth.controller.js)
 
-Store belongs to Store Owner.
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/ratings/rating.controller.js)
 
-## Rating Table
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/stores/store.controller.js)
 
-Fields
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/owner/owner.controller.js)
 
-* id
-* userId
-* storeId
-* rating
-* createdAt
-* updatedAt
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/admin/admin.controller.js#1-1), lines 1 to 200
 
-Constraint
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/auth/auth.service.js)
 
-One user can rate one store only once.
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/admin/admin.service.js)
 
-@@unique([userId, storeId])
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/ratings/rating.service.js)
 
-# Authentication Module
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/stores/store.service.js)
 
-Completed
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/owner/owner.service.js)
 
-## Register
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/auth/auth.validator.js)
 
-POST /auth/register
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/admin/admin.validator.js)
 
-Fields
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/modules/ratings/rating.validator.js)
 
-* name
-* email
-* address
-* password
+Read [](file:///e%3A/Tesks/Roxiler%20Systems/backend/src/utils/response.js)
 
-Role assigned automatically
+Now I'll create a comprehensive technical documentation report of your backend codebase.
 
-USER
+# **Roxiler Systems - Backend Technical Documentation**
 
-## Login
+## **1. Architecture & Tech Stack Overview**
 
-POST /auth/login
+### **Technology Stack**
+| Component | Technology | Version |--|
+| **Runtime** | Node.js | Latest (via npm packages) |
+| **Web Framework** | Express.js | ^5.2.1 |
+| **Database** | MySQL | 8.0+ (via DATABASE_URL) |
+| **ORM** | Prisma | ^6.19.3 |
+| **Authentication** | JWT (jsonwebtoken) | ^9.0.3 |
+| **Password Hashing** | bcryptjs | ^3.0.3 |
+| **Input Validation** | Joi | ^18.2.1 |
+| **CORS** | cors | ^2.8.6 |
+| **Environment Config** | dotenv | ^17.4.2 |
+| **Dev Tools** | nodemon | ^3.1.14 |
 
-Returns
+### **Architectural Pattern**
+This backend follows a **Layered Architecture (MVC-inspired)** with clear separation of concerns:
 
-* JWT Token
-* User Details
+Request → Routes → Controller → Service → Prisma ORM → Database
+                    ↓
+                Middleware (Auth, Role-based Access)
+                    ↓
+                Validators (Joi Schema Validation)
 
-## Change Password
+**Key Design Principles:**
+- **Route Layer**: Defines endpoints and applies middleware
+- **Controller Layer**: Validates requests and orchestrates service calls
+- **Service Layer**: Implements business logic and data transformations
+- **Persistence Layer**: Direct database operations via Prisma
+- **Middleware Layer**: Cross-cutting concerns (authentication, authorization)
+- **Validation Layer**: Input schema validation using Joi
 
-PUT /auth/change-password
+## **2. Database Schema & Models**
 
-Protected Route
+### **Entity Relationship Diagram**
 
-Requires JWT Token
-
-# Middleware
-
-## auth.middleware.js
-
-Responsibilities
-
-* Verify JWT Token
-* Extract User ID
-* Extract User Role
-* Attach user data to req.user
-
-## role.middleware.js
-
-Responsibilities
-
-Role based authorization
-
-Supported Roles
-
-* ADMIN
-* USER
-* STORE_OWNER
-
-# Admin Module
-
-Protected Routes
-
-Requires
-
-ADMIN Role
-
-## Dashboard
-
-GET /admin/dashboard
-
-Returns
-
-* Total Users
-* Total Stores
-* Total Ratings
-
-## User Management
-
-### Create User
-
-POST /admin/users
-
-Can Create
-
-* ADMIN
-* USER
-* STORE_OWNER
-
-Fields
-
-* name
-* email
-* address
-* password
-* role
-
-### List Users
-
-GET /admin/users
-
-Supports Filters
-
-* name
-* email
-* address
-* role
-
-Supports Sorting
-
-* name
-* email
-* role
-
-Examples
-
-/admin/users?role=STORE_OWNER
-
-/admin/users?name=Rajesh
-
-/admin/users?sortBy=email&order=desc
-
-### User Details
-
-GET /admin/users/:id
-
-Returns
-
-* id
-* name
-* email
-* address
-* role
-
-## Store Management
-
-### Create Store
-
-POST /admin/stores
-
-Fields
-
-* name
-* email
-* address
-* ownerId
-
-Store can only be assigned to STORE_OWNER.
-
-### List Stores
-
-GET /admin/stores
-
-Supports Filters
-
-* name
-* email
-* address
-
-Supports Sorting
-
-* name
-* email
-
-Returns
-
-* Store Name
-* Email
-* Address
-* Average Rating
-
-### Store Details
-
-GET /admin/stores/:id
-
-Returns
-
-* Store Details
-* Store Owner Details
-* Ratings
-* Average Rating
-
-# User Store Module
-
-Protected Route
-
-Requires Login
-
-## List Stores
-
-GET /stores
-
-Supports Search
-
-* name
-* address
-
-Supports Sorting
-
-* name
-
-Returns
-
-* Store ID
-* Store Name
-* Address
-* Overall Rating
-* Logged In User Rating
-
-Examples
-
-/stores?name=Tech
-
-/stores?address=Pune
-
-/stores?sortBy=name&order=desc
-
-# Rating Module
-
-Protected Route
-
-Requires Login
-
-## Submit Rating
-
-POST /ratings
-
-Fields
-
-* storeId
-* rating
-
-Rating Range
-
-1 to 5
-
-User can submit only one rating per store.
-
-## Update Rating
-
-PUT /ratings/:id
-
-Fields
-
-* rating
-
-Allows user to modify existing rating.
-
-# Store Owner Module
-
-Protected Route
-
-Requires STORE_OWNER Role
-
-## Store Owner Dashboard
-
-GET /owner/dashboard
-
-Returns
-
-* Store ID
-* Store Name
-* Average Rating
-* Users Who Submitted Ratings
-
-Each Rated User Contains
-
-* User ID
-* Name
-* Email
-* Submitted Rating
-
-# Validation Rules
-
-Name
-
-* Minimum 20 Characters
-* Maximum 60 Characters
-
-Address
-
-* Maximum 400 Characters
-
-Password
-
-* 8 to 16 Characters
-* At least one Uppercase Letter
-* At least one Special Character
-
-Email
-
-* Standard Email Validation
-
-Validation Library
-
-Joi
-
-# Backend Status
-
-Authentication Module
-Completed
-
-Admin Module
-Completed
-
-Store Module
-Completed
-
-Rating Module
-Completed
-
-Store Owner Module
-Completed
-
-JWT Authentication
-Completed
-
-Role Based Authorization
-Completed
-
-Filtering
-Completed
-
-Sorting
-Completed
-
-MySQL Database
-Completed
-
-Prisma ORM
-Completed
-
-Backend Ready For Frontend Development
+User (1) ────────────── (M) Store
+  │                         │
+  │                         │
+  └─────────────────────────┘
+          (M:M via Rating)
+
+User (1) ────────────── (M) Rating ────────────── (M) Store
+
+### **2.1 User Model**
+
+| Field | Type | Constraints | Description |--|
+| `id` | INT | Primary Key, Auto-increment | Unique user identifier |
+| `name` | VARCHAR | Required | User's full name |
+| `email` | VARCHAR | Required, Unique | User's email address |
+| `password` | VARCHAR | Required | Bcrypt-hashed password (10 rounds) |
+| `address` | VARCHAR(400) | Required | User's address (max 400 chars) |
+| `role` | ENUM | Default: USER | One of: `ADMIN`, `USER`, `STORE_OWNER` |
+| `createdAt` | TIMESTAMP | Auto | Record creation timestamp |
+| `updatedAt` | TIMESTAMP | Auto | Last update timestamp |
+
+**Relationships:**
+- `stores` (1:M) → Store owner relationship
+- `ratings` (1:M) → User ratings submitted
+
+### **2.2 Store Model**
+
+| Field | Type | Constraints | Description |--|
+| `id` | INT | Primary Key, Auto-increment | Unique store identifier |
+| `name` | VARCHAR | Required | Store name |
+| `email` | VARCHAR | Required, Unique | Store email address |
+| `address` | VARCHAR(400) | Required | Store physical address |
+| `ownerId` | INT | Foreign Key (User.id) | Reference to store owner |
+| `createdAt` | TIMESTAMP | Auto | Record creation timestamp |
+| `updatedAt` | TIMESTAMP | Auto | Last update timestamp |
+
+**Relationships:**
+- `owner` (M:1) → User (Store owner)
+- `ratings` (1:M) → Ratings received
+
+### **2.3 Rating Model**
+
+| Field | Type | Constraints | Description |--|
+| `id` | INT | Primary Key, Auto-increment | Unique rating identifier |
+| `userId` | INT | Foreign Key (User.id) | User who submitted the rating |
+| `storeId` | INT | Foreign Key (Store.id) | Store being rated |
+| `rating` | INT | 1-5 range | Rating value (1 to 5 stars) |
+| `createdAt` | TIMESTAMP | Auto | Rating submission timestamp |
+| `updatedAt` | TIMESTAMP | Auto | Last update timestamp |
+
+**Constraints:**
+- **Unique Composite Index**: `[userId, storeId]` - Each user can rate each store only once
+- **Cascade Delete**: Ratings are deleted if user or store is deleted
+
+**Relationships:**
+- `user` (M:1) → User who rated
+- `store` (M:1) → Store being rated
+
+## **3. API Routing & Endpoint Mapping**
+
+### **3.1 Authentication Module** (`/auth`)
+
+| Method | Endpoint | Middleware | Controller | Description |----|
+| POST | `/auth/register` | None | `AuthController.register` | User registration with role=USER |
+| POST | `/auth/login` | None | `AuthController.login` | User login, returns JWT token |
+| PUT | `/auth/change-password` | authMiddleware | `AuthController.changePassword` | Change password (authenticated users) |
+
+**Validation Rules:**
+- **register/changePassword (newPassword)**:
+  - Pattern: `/^(?=.*[A-Z])(?=.*[\W_]).{8,16}$/`
+  - Must contain: uppercase letter, special character, 8-16 chars
+- **register (name)**: min 20, max 60 characters
+- **register (address)**: max 400 characters
+
+### **3.2 Admin Module** (`/admin`)
+
+**Middleware Chain**: `authMiddleware` → `roleMiddleware("ADMIN")`
+- All routes require valid JWT token with `role: "ADMIN"`
+- Returns 401 if token missing/invalid, 403 if non-admin
+
+| Method | Endpoint | Controller | Description |---|
+| GET | `/admin/dashboard` | `AdminController.dashboard` | Dashboard statistics (total users, stores, ratings) |
+| POST | `/admin/users` | `AdminController.createUser` | Create new user with specified role |
+| GET | `/admin/users` | `AdminController.getUsers` | List all users with filtering & sorting |
+| GET | `/admin/users/:id` | `AdminController.getUserById` | Get single user with average rating |
+| POST | `/admin/stores` | `AdminController.createStore` | Create new store with owner validation |
+| GET | `/admin/stores` | `AdminController.getStores` | List all stores with average ratings |
+| GET | `/admin/stores/:id` | `AdminController.getStoreById` | Get single store details with ratings |
+
+**Query Parameters (Filtering & Sorting):**
+- `name` - String contains search
+- `email` - String contains search
+- `address` - String contains search
+- `role` (users only) - Exact match (ADMIN, USER, STORE_OWNER)
+- `sortBy` - Field to sort by (default: "name")
+- `order` - Sort order (asc/desc, default: "asc")
+
+### **3.3 Ratings Module** (`/ratings`)
+
+**Middleware**: `authMiddleware` required for all routes
+- All routes require valid JWT token
+
+| Method | Endpoint | Controller | Description |---|
+| POST | `/ratings/` | `RatingController.submitRating` | Submit new rating for a store |
+| PUT | `/ratings/store/:id` | `RatingController.updateRating` | Update existing rating |
+
+**Validation Rules:**
+- `storeId` - Required, must be valid integer
+- `rating` - Required, must be between 1-5
+
+**Business Rules:**
+- User can only submit one rating per store (unique constraint)
+- Updating rating requires authorization (only rating owner can update)
+
+### **3.4 Stores Module** (`/stores`)
+
+**Middleware**: `authMiddleware` required
+- Public store listings visible to authenticated users
+- Includes overall ratings and user's personal rating
+
+| Method | Endpoint | Controller | Description |---|
+| GET | `/stores/` | `StoreController.getStores` | Get all stores with ratings |
+
+**Query Parameters:**
+- `name` - String contains search
+- `address` - String contains search
+- `sortBy` - Field to sort by (default: "name")
+- `order` - Sort order (asc/desc, default: "asc")
+
+**Response Transformation:**
+- Returns `overallRating` (average of all ratings)
+- Returns `userRating` (current user's rating for the store, if any)
+
+### **3.5 Store Owner Module** (`/owner`)
+
+**Middleware Chain**: `authMiddleware` → `roleMiddleware("STORE_OWNER")`
+- All routes require valid JWT token with `role: "STORE_OWNER"`
+
+| Method | Endpoint | Controller | Description |---|
+| GET | `/owner/dashboard` | `OwnerController.dashboard` | Owner's store dashboard with analytics |
+
+**Dashboard Response:**
+- Store ID, Store Name
+- Average rating across all ratings
+- List of users who rated with their details (id, name, email, rating)
+
+## **4. Detailed Core Functionality & Logic**
+
+### **4.1 Authentication Module**
+
+#### **register()**javascript
+// Location: src/modules/auth/auth.service.js
+// Input: { name, email, address, password }
+// Output: Newly created User object
+
+**Logic Flow:**
+1. Validates input using `registerSchema` (Joi)
+2. Checks if email already exists (unique constraint violation)
+3. **Password Hashing**: Uses bcryptjs with 10 salt rounds
+4. Creates user in database with role defaulting to `"USER"`
+5. Returns created user object
+
+**Security Measures:**
+- Email uniqueness enforced at database level
+- Password never stored in plain text
+- Strong password regex enforced: uppercase + special char + 8-16 chars
+
+**Error Handling:**
+- Throws error if email exists
+- Returns 400 status with error message for validation failures
+
+#### **login()**javascript
+// Location: src/modules/auth/auth.service.js
+// Input: { email, password }
+// Output: { token: JWT, user: User object }
+
+**Logic Flow:**
+1. Validates input using `loginSchema`
+2. Finds user by email in database
+3. **Password Comparison**: Uses bcryptjs.compare() to verify
+4. **JWT Generation**:
+   - Payload: `{ id, role }`
+   - Secret: `process.env.JWT_SECRET`
+   - Expiration: `1 day`
+5. Returns token and user object
+
+**Token Structure (Example):**
+Header: { alg: "HS256", typ: "JWT" }
+Payload: { id: 5, role: "USER", iat: 1234567890, exp: 1234654290 }
+
+**Error Handling:**
+- 400 if user not found
+- 400 if password doesn't match
+- Generic "Invalid credentials!" message (no email enumeration)
+
+#### **changePassword()**javascript
+// Location: src/modules/auth/auth.service.js
+// Input: userId, oldPassword, newPassword
+// Output: Boolean (true on success)
+
+**Logic Flow:**
+1. Validates newPassword using `changePasswordSchema`
+2. Retrieves user from database
+3. **Old Password Verification**: Compares with bcrypt
+4. **New Password Hashing**: Generates new hash with 10 rounds
+5. Updates user password in database
+
+**Constraints:**
+- Old password must be correct
+- New password must meet complexity rules
+- Requires authenticated user (via middleware)
+
+### **4.2 Admin Module**
+
+#### **dashboard()**javascript
+// Returns: { totalUsers, totalStores, totalRatings }
+
+**Logic:**
+- Aggregates database counts across three main entities
+- Provides high-level system statistics
+- No parameters, simple count queries
+
+#### **createUser()**javascript
+// Input: { name, email, address, password, role }
+// Output: Newly created User object
+
+**Logic Flow:**
+1. Validates input using `createUserSchema` (includes role validation)
+2. Checks email uniqueness
+3. Hashes password with bcryptjs (10 rounds)
+4. Creates user with specified role (ADMIN, USER, or STORE_OWNER)
+5. Returns created user
+
+**Key Difference from Self-Registration:**
+- Allows role assignment (self-registration always creates USER role)
+- Admin-only endpoint to manually create users with elevated privileges
+
+#### **getUsers()**javascript
+// Input: { name?, email?, address?, role?, sortBy?, order? }
+// Output: Array of User objects
+
+**Logic:**
+- Builds dynamic WHERE clause based on provided query parameters
+- String filters use `contains` operator (case-insensitive partial match)
+- Role filter uses exact match (enum)
+- Default sort: by name, ascending
+- Returns only non-sensitive fields (no passwords)
+
+**Example Query:**
+GET /admin/users?name=john&role=STORE_OWNER&sortBy=email&order=desc
+
+#### **getUserById()**javascript
+// Input: id (URL parameter)
+// Output: User object with averageRating (if STORE_OWNER)
+
+**Logic:**
+1. Fetches user with all related stores and their ratings
+2. **If user is STORE_OWNER**:
+   - Calculates average rating from store's ratings
+   - Rounds to 1 decimal place
+3. **If user is not STORE_OWNER**: averageRating = null
+4. Returns sanitized user object
+
+**Data Transformation:**javascript
+// For STORE_OWNER:
+{
+  id: 5,
+  name: "John Doe",
+  email: "john@example.com",
+  address: "123 Main St",
+  role: "STORE_OWNER",
+  averageRating: 4.5  // Calculated from store ratings
+}
+
+#### **createStore()**javascript
+// Input: { name, email, address, ownerId }
+// Output: Newly created Store object
+
+**Logic Flow:**
+1. Validates input using `createStoreSchema`
+2. **Owner Validation**: Verifies ownerId exists and user role is STORE_OWNER
+3. Creates store record linked to owner
+4. Returns created store
+
+**Business Rules:**
+- Store email must be unique (enforced at DB level)
+- Owner must exist and have STORE_OWNER role
+- One store per owner? (No constraint, but typically one owner per store)
+
+#### **getStores()**javascript
+// Input: { name?, email?, address?, sortBy?, order? }
+// Output: Array of Store objects with averageRating
+
+**Logic:**
+1. Queries all stores with related ratings
+2. Filters by name/email/address (contains, case-insensitive)
+3. Calculates average rating for each store
+4. Rounds to 1 decimal, converts to number
+5. Returns 0 if no ratings exist
+6. Sorts and returns
+
+**Response Structure:**javascript
+{
+  id: 1,
+  name: "Best Store",
+  email: "store@example.com",
+  address: "456 Oak Ave",
+  rating: 4.3  // Average of all user ratings
+}
+
+#### **getStoreById()**javascript
+// Input: id (URL parameter)
+// Output: Store object with detailed ratings info
+
+**Logic:**
+1. Fetches store with owner info and all ratings
+2. Calculates average rating (1 decimal place)
+3. Throws "Store not found" error if not exists
+4. Returns enriched store object including owner details
+
+### **4.3 Ratings Module**
+
+#### **submitRating()**javascript
+// Input: userId (from JWT), { storeId, rating }
+// Output: Newly created Rating object
+
+**Logic Flow:**
+1. Validates rating schema (1-5 range)
+2. Verifies store exists
+3. **Uniqueness Check**: Ensures user hasn't already rated this store
+4. Creates rating record
+5. Returns rating object
+
+**Business Rule Enforcement:**
+- Unique composite key `[userId, storeId]` prevents duplicate ratings
+- Each user can rate each store exactly once
+
+**Error Handling:**
+- "Store not found" if store doesn't exist
+- "Rating already submitted" if duplicate rating attempt
+
+#### **updateRating()**javascript
+// Input: ratingId, userId (from JWT), { rating }
+// Output: Updated Rating object
+
+**Logic Flow:**
+1. Finds rating by ID
+2. **Authorization Check**: Verifies userId matches rating's creator
+3. Updates rating value
+4. Returns updated rating
+
+**Security:**
+- Prevents users from updating other users' ratings
+- Ownership validated against JWT user ID
+
+**Error Handling:**
+- "Rating not found" if doesn't exist
+- "Unauthorized update" if user doesn't own the rating
+
+### **4.4 Stores Module**
+
+#### **getStores()**javascript
+// Input: userId (from JWT), { name?, address?, sortBy?, order? }
+// Output: Array of Store objects with personalized ratings
+
+**Logic:**
+1. Queries all stores matching filters
+2. **For each store**:
+   - Calculates overall average rating
+   - Extracts user's personal rating (if exists)
+3. Returns stores with dual rating info
+
+**Response Structure:**javascript
+{
+  id: 1,
+  storeName: "Best Store",
+  address: "456 Oak Ave",
+  overallRating: 4.3,    // Average of all users
+  userRating: 5          // Current user's rating (null if not rated)
+}
+
+**Use Case:** Shows users both community ratings and their own ratings
+
+### **4.5 Store Owner Module**
+
+#### **getDashboard()**javascript
+// Input: ownerId (from JWT)
+// Output: Dashboard object with store stats and rated users list
+
+**Logic Flow:**
+1. Finds first store owned by ownerId
+2. Fetches store with all ratings and rating user details
+3. Calculates average rating
+4. Transforms ratings to user list format
+5. Returns dashboard
+
+**Dashboard Response:**javascript
+{
+  storeId: 1,
+  storeName: "Best Store",
+  averageRating: 4.5,
+  ratedUsers: [
+    {
+      userId: 2,
+      name: "Alice Smith",
+      email: "alice@example.com",
+      rating: 5
+    },
+    {
+      userId: 3,
+      name: "Bob Jones",
+      email: "bob@example.com",
+      rating: 4
+    }
+  ]
+}
+
+**Business Logic:**
+- Owner sees all users who rated their store
+- Includes user contact info for follow-up
+- Real-time average rating calculation
+
+## **5. Security & Authentication Implementation**
+
+### **5.1 JWT Authentication**
+
+**Token Structure:**
+- **Algorithm**: HS256 (HMAC-SHA256)
+- **Secret**: Stored in `process.env.JWT_SECRET`
+- **Payload**: `{ id: number, role: string }`
+- **Expiration**: 1 day (`"1d"`)
+
+**Token Location:** 
+- Sent in request header: `Authorization: Bearer <token>`
+
+**Token Verification:**javascript
+// authMiddleware logic:
+1. Extract token from "Authorization" header
+2. Split by space and take second part
+3. Verify signature using JWT_SECRET
+4. Attach decoded payload to req.user
+5. Pass to next middleware/controller
+
+**Error Handling:**
+- 401 if token missing: "Token required...!"
+- 401 if token invalid/expired: "Invalid token"
+
+### **5.2 Password Security**
+
+**Hashing Algorithm:** bcryptjs
+- **Salt Rounds**: 10
+- **Hash Function**: bcrypt (adaptive, resistant to brute-force)
+- **Cost Factor**: Automatic with 10 rounds (∼10ms per hash on modern hardware)
+
+**Password Validation:**
+Pattern: /^(?=.*[A-Z])(?=.*[\W_]).{8,16}$/
+- Must contain at least one uppercase letter (A-Z)
+- Must contain at least one special character (non-word or underscore)
+- Must be 8-16 characters long
+
+**Examples:**
+- ✅ Valid: `MyPass!123`, `SecureP@ss99`, `Test#1234`
+- ❌ Invalid: `Password123` (no special char), `test@` (no uppercase), `short!` (< 8 chars)
+
+**Password Change Flow:**
+1. User provides old and new password
+2. Old password verified with bcrypt.compare()
+3. New password hashed with bcryptjs (10 rounds)
+4. Update in database
+
+### **5.3 Role-Based Access Control (RBAC)**
+
+**Role Types:**
+Enum Role {
+  ADMIN         // Full system access
+  USER          // Can rate stores, view store listings
+  STORE_OWNER   // Can view own store dashboard, receive ratings
+}
+
+**Middleware Implementation:**javascript
+// roleMiddleware accepts one or more allowed roles
+router.get("/admin/users", 
+  authMiddleware,                    // Step 1: Verify JWT
+  roleMiddleware("ADMIN"),           // Step 2: Check role
+  AdminController.getUsers           // Step 3: Execute endpoint
+);
+
+**Route-Level Access Control:**
+
+| Route | Required Role | Middleware Chain ||
+| `/auth/*` | None | None |
+| `/admin/*` | ADMIN | authMiddleware → roleMiddleware("ADMIN") |
+| `/ratings/*` | USER (any authenticated) | authMiddleware |
+| `/stores/*` | USER (any authenticated) | authMiddleware |
+| `/owner/dashboard` | STORE_OWNER | authMiddleware → roleMiddleware("STORE_OWNER") |
+
+**Access Denied Response:**json
+{
+  "success": false,
+  "message": "Access denied...!"
+}
+// Status: 403 Forbidden
+
+### **5.4 Endpoint-Level Authorization**
+
+**Rating Update (Ownership Validation):**javascript
+// User can only update their own ratings
+if (existingRating.userId !== userId) {
+  throw new Error("Unauthorized update");
+}
+
+**Store Owner Validation:**javascript
+// Only allow creating stores for valid STORE_OWNER users
+const owner = await prisma.user.findUnique({ id: ownerId });
+if (!owner || owner.role !== "STORE_OWNER") {
+  throw new Error("Invalid store owner");
+}
+
+**Email Uniqueness:**
+- Enforced at database level (UNIQUE constraint)
+- Prevents duplicate registrations
+- Prevents duplicate store emails
+
+### **5.5 Input Validation Security**
+
+**Schema Validation Layer (Joi):**
+
+1. **Type Validation**: Ensures correct data types
+2. **Format Validation**: Email, string length, numeric ranges
+3. **Pattern Validation**: Complex rules (e.g., password complexity)
+4. **Enum Validation**: Role must be in allowed set
+
+**Example - Rating Submission:**javascript
+ratingSchema.validate({
+  storeId: 1,      // Must be number
+  rating: 5        // Must be 1-5 range
+})
+
+**XSS/Injection Prevention:**
+- Joi validates and sanitizes input
+- Prisma uses parameterized queries (prevents SQL injection)
+- No direct string concatenation in queries
+
+### **5.6 Database Security**
+
+**Connection:**
+- Stored in `process.env.DATABASE_URL`
+- Credentials kept in environment variables (not in code)
+- Prisma manages connection pooling
+
+**Foreign Key Constraints:**
+- Relationships enforced at database level
+- Prevents orphaned records
+- Cascade deletes configured in schema
+
+**Unique Constraints:**
+- Email uniqueness: `User.email`, `Store.email`
+- Composite unique: `Rating [userId, storeId]`
+- Prevents business logic violations at DB level
+
+### **5.7 Error Handling & Information Disclosure**
+
+**Generic Error Messages:**
+- Login failures: "Invalid credentials!" (no email enumeration)
+- Password mismatch: "Old password is incorrect...!"
+
+**Sensitive Data Exclusion:**
+- API never returns password hashes
+- User queries exclude password field
+- Dashboard doesn't expose sensitive info
+
+**HTTP Status Codes:**
+- 400: Bad Request (validation, business logic errors)
+- 401: Unauthorized (missing/invalid token)
+- 403: Forbidden (insufficient permissions)
+- 404: Not Found (resource doesn't exist)
+- 500: Server Error (unhandled exceptions)
+
+## **Summary: Security Posture**
+
+| Security Layer | Implementation | Strength ||
+| **Authentication** | JWT with 1-day expiration | Medium (no refresh tokens) |
+| **Password Storage** | bcryptjs (10 rounds) | Strong |
+| **Authorization** | Role-based + ownership checks | Strong |
+| **Input Validation** | Joi schemas + DB constraints | Strong |
+| **Data Protection** | HTTPS-ready, environment-based secrets | Good |
+| **SQL Injection** | Prisma parameterized queries | Strong |
+| **Sensitive Data** | No passwords in responses | Good |
+
+## **Additional Notes**
+
+### **Database Migrations**
+- Prisma migrations tracked in migrations
+- Current migration: `20260613153631_init` (schema initialization)
+
+### **Configuration**
+- All secrets in .env file (via dotenv)
+- Required env vars: `JWT_SECRET`, `DATABASE_URL`, `PORT`
+
+### **Development Mode**
+- `npm run dev` runs with nodemon for auto-reload
+- `npm start` runs production mode
+
+This documentation provides a complete technical reference for the Roxiler Systems backend, covering architecture, database design, API endpoints, business logic, and security implementation. All endpoints, models, and authentication flows are fully mapped and documented.
