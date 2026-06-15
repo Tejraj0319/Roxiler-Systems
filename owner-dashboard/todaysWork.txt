@@ -29,7 +29,7 @@ Searched for regex `prisma|mongoose|schema|models|db\.|database|Mongo|Postgres|S
 
 ## 1. High-Level Overview
 
-This is a React single-page application built with Vite that serves as an owner-facing dashboard for store owners. Its core purpose is to authenticate a store owner, authorize only the `STORE_OWNER` role, and present an owner dashboard with store data and ratings. The app is frontend-only in this workspace; it integrates with a backend API hosted at `http://localhost:5000`.
+This is a React single-page application built with Vite that serves as an owner-facing dashboard for store owners. Its core purpose is to authenticate a store owner, authorize only the `STORE_OWNER` role, and present an owner dashboard with store data and ratings. The app is frontend-only in this workspace; it integrates with a backend API hosted at `https://roxiler-systems-1jrx.onrender.com`.
 
 ## 2. Folder Structure Breakdown
 
@@ -177,7 +177,7 @@ Inferred entities:
 
 Frontend interacts with backend through a single Axios instance:
 - axios.js
-  - `baseURL: http://localhost:5000`
+  - `baseURL: https://roxiler-systems-1jrx.onrender.com`
   - attaches `Authorization` header from `localStorage.token`
 
 Implemented endpoints:

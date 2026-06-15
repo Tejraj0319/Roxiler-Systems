@@ -192,7 +192,7 @@ Reducer Map:
 ### **B. API Layer**
 
 #### **`api/axios.js`**
-- Base URL: `http://localhost:5000`
+- Base URL: `https://roxiler-systems-1jrx.onrender.com`
 - Default header: `Content-Type: application/json`
 - **Request Interceptor:**
   - Injects JWT token from localStorage as `Authorization: Bearer {token}`
