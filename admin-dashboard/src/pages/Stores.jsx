@@ -212,7 +212,7 @@ const Stores = () => {
                     <td className="px-6 py-4 text-slate-400">{store.address}</td>
                     <td className="px-6 py-4">
                       <span className="inline-flex items-center gap-1 rounded-md border border-blue-500/20 bg-blue-500/10 px-2.5 py-1 text-xs font-semibold text-blue-400">
-                        ⭐ {store.rating}
+                        {store.rating}
                       </span>
                     </td>
                     <td className="px-6 py-4">

@@ -1,105 +1,3 @@
-// import { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { useNavigate, useParams } from "react-router-dom";
-
-// import { getStoreById } from "../features/stores/storeThunk";
-// import { clearSelectedStore } from "../features/stores/storeSlice";
-
-// const StoreDetails = () => {
-//   const { id } = useParams();
-
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-
-//   const { selectedStore, loading, error } = useSelector((state) => state.stores);
-
-//   useEffect(() => {
-//     dispatch(getStoreById(id));
-
-//     return () => {
-//       dispatch(clearSelectedStore());
-//     };
-//   }, [dispatch, id]);
-
-//   if (loading) return <h2>Loading...</h2>;
-
-//   if (error) return <h2>{error}</h2>;
-
-//   if (!selectedStore) return null;
-
-//   return (
-//     <div>
-//       <h1>Store Details</h1>
-
-//       <hr />
-
-//       <p>
-//         <strong>Name:</strong> {selectedStore.name}
-//       </p>
-
-//       <p>
-//         <strong>Email:</strong> {selectedStore.email}
-//       </p>
-
-//       <p>
-//         <strong>Address:</strong> {selectedStore.address}
-//       </p>
-
-//       <p>
-//         <strong>Average Rating:</strong> {selectedStore.averageRating}
-//       </p>
-
-//       <hr />
-
-//       <h2>Store Owner</h2>
-
-//       <p>
-//         <strong>Name:</strong> {selectedStore.owner?.name}
-//       </p>
-
-//       <p>
-//         <strong>Email:</strong> {selectedStore.owner?.email}
-//       </p>
-
-//       <hr />
-
-//       <h2>Ratings</h2>
-
-//       {selectedStore.ratings?.length > 0 ? (
-//         <table border="1" cellPadding="10">
-//           <thead>
-//             <tr>
-//               <th>Rating ID</th>
-//               <th>User ID</th>
-//               <th>Rating</th>
-//             </tr>
-//           </thead>
-
-//           <tbody>
-//             {selectedStore.ratings.map((rating) => (
-//               <tr key={rating.id}>
-//                 <td>{rating.id}</td>
-//                 <td>{rating.userId}</td>
-//                 <td>{rating.rating}</td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-//       ) : (
-//         <p>No ratings found</p>
-//       )}
-
-//       <br />
-
-//       <button onClick={() => navigate("/stores")}>Back</button>
-//     </div>
-//   );
-// };
-
-// export default StoreDetails;
-
-
-
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -136,7 +34,7 @@ const StoreDetails = () => {
   if (error) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
-        <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-6 py-4 text-sm text-rose-400">⚠ {error}</div>
+        <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-6 py-4 text-sm text-rose-400">{error}</div>
       </div>
     );
   }
@@ -174,7 +72,6 @@ const StoreDetails = () => {
             <div className="flex items-baseline gap-1.5">
               <span className="text-3xl font-bold text-white">{selectedStore.averageRating ?? 0}</span>
               <span className="text-slate-500 text-sm">/ 5</span>
-              <span className="text-xl ml-1">⭐</span>
             </div>
           </div>
         </div>

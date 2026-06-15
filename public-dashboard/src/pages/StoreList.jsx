@@ -88,14 +88,7 @@ function StoreList() {
     dispatch(getStores({ sortBy: "name", order: "asc" }));
   };
 
-  // const handleRatingChange = (storeId, value) => {
-  //   setRatings((prev) => ({ ...prev, [storeId]: value }));
-  // };
-
   const handleRatingChange = (storeId, value) => {
-    console.log("Store ID:", storeId);
-    console.log("Selected Rating:", value);
-
     setRatings((prev) => ({
       ...prev,
       [storeId]: value,
@@ -187,8 +180,10 @@ function StoreList() {
                 type="text"
                 placeholder="Search by name…"
                 value={searchName}
-                onChange={(e) => setSearchName(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                onChange={(e) => {
+                  setSearchName(e.target.value);
+                  dispatch(getStores({ name: e.target.value, address: searchAddress, sortBy, order }));
+                }}
                 className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white placeholder-slate-500 outline-none ring-blue-500 transition focus:border-blue-500 focus:ring-1"
               />
             </div>
@@ -199,8 +194,10 @@ function StoreList() {
                 type="text"
                 placeholder="Search by address…"
                 value={searchAddress}
-                onChange={(e) => setSearchAddress(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                onChange={(e) => {
+                  setSearchAddress(e.target.value);
+                  dispatch(getStores({ name: searchName, address: e.target.value, sortBy, order }));
+                }}
                 className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white placeholder-slate-500 outline-none ring-blue-500 transition focus:border-blue-500 focus:ring-1"
               />
             </div>

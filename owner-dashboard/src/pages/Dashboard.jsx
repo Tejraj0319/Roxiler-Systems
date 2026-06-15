@@ -155,7 +155,6 @@ const Dashboard = () => {
                         <div className="flex items-baseline gap-1.5 justify-end">
                           <span className="text-2xl font-bold text-white">{store.averageRating ?? 0}</span>
                           <span className="text-slate-500 text-sm">/ 5</span>
-                          <span className="text-lg ml-1">⭐</span>
                         </div>
                       </div>
 
@@ -210,7 +209,7 @@ const Dashboard = () => {
                                   <td className="px-6 py-4 text-slate-400">{ratedUser.email}</td>
                                   <td className="px-6 py-4">
                                     <span className="inline-flex items-center gap-1.5 rounded-md border border-blue-500/20 bg-blue-500/10 px-2.5 py-1 text-xs font-semibold text-blue-400">
-                                      ⭐ {ratedUser.rating}
+                                      {ratedUser.rating}
                                     </span>
                                   </td>
                                 </tr>
