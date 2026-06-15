@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../features/auth/authThunk";
 import { clearError } from "../features/auth/authSlice";
 
+const DEMO = { email: "admin@test.com", password: "Password@1" };
+
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,6 +21,7 @@ const Login = () => {
 
   const handleChange = (e) => setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   const handleSubmit = (e) => { e.preventDefault(); dispatch(loginUser(formData)); };
+  const fillDemo = () => setFormData(DEMO);
 
   const inputClass =
     "w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-2.5 text-sm text-slate-200 placeholder-slate-500 outline-none transition focus:border-blue-500 focus:ring-1 focus:ring-blue-500";
@@ -37,6 +40,26 @@ const Login = () => {
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-xl">
           <h1 className="text-white text-lg font-semibold mb-1">Sign in</h1>
           <p className="text-slate-500 text-sm mb-6">Welcome back — enter your credentials</p>
+
+          {/* Demo credentials banner */}
+          <div className="mb-5 rounded-lg border border-blue-500/25 bg-blue-500/10 px-4 py-3">
+            <p className="text-xs font-medium text-blue-400 mb-2">Demo credentials</p>
+            <div className="space-y-1 text-xs text-slate-400 font-mono">
+              <div className="flex justify-between items-center">
+                <span><span className="text-slate-500">Email</span>    {DEMO.email}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span><span className="text-slate-500">Pass </span>    {DEMO.password}</span>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={fillDemo}
+              className="mt-3 w-full rounded-md border border-blue-500/30 bg-blue-500/15 px-3 py-1.5 text-xs font-medium text-blue-400 transition hover:bg-blue-500/25 active:scale-95"
+            >
+              Fill credentials
+            </button>
+          </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>

@@ -1,110 +1,11 @@
-// import { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { Link, useNavigate } from "react-router-dom";
-
-// import { loginUser } from "../features/auth/authThunk";
-// import { clearError } from "../features/auth/authSlice";
-
-// function Login() {
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-
-//   const { loading, error, isAuthenticated, user } = useSelector(
-//     (state) => state.auth
-//   );
-
-//   const [formData, setFormData] = useState({
-//     email: "",
-//     password: "",
-//   });
-
-//   const handleChange = (e) => {
-//     setFormData((prev) => ({
-//       ...prev,
-//       [e.target.name]: e.target.value,
-//     }));
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-
-//     dispatch(loginUser(formData));
-//   };
-
-//   useEffect(() => {
-//     if (isAuthenticated && user) {
-//       navigate("/stores");
-//     }
-//   }, [isAuthenticated, user, navigate]);
-
-//   useEffect(() => {
-//     return () => {
-//       dispatch(clearError());
-//     };
-//   }, [dispatch]);
-
-//   return (
-//     <div>
-//       <h1>Login</h1>
-
-//       <form onSubmit={handleSubmit}>
-//         <div>
-//           <label>Email</label>
-//           <br />
-
-//           <input
-//             type="email"
-//             name="email"
-//             value={formData.email}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-
-//         <br />
-
-//         <div>
-//           <label>Password</label>
-//           <br />
-
-//           <input
-//             type="password"
-//             name="password"
-//             value={formData.password}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-
-//         <br />
-
-//         <button type="submit" disabled={loading}>
-//           {loading ? "Logging In..." : "Login"}
-//         </button>
-//       </form>
-
-//       <br />
-
-//       {error && <p>{error}</p>}
-
-//       <p>
-//         Don't have an account? <Link to="/register">Register</Link>
-//       </p>
-//     </div>
-//   );
-// }
-
-// export default Login;
-
-
-
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import { loginUser } from "../features/auth/authThunk";
 import { clearError } from "../features/auth/authSlice";
+
+const DEMO = { email: "user@test.com", password: "Password@1" };
 
 function Login() {
   const dispatch = useDispatch();
@@ -130,6 +31,8 @@ function Login() {
     e.preventDefault();
     dispatch(loginUser(formData));
   };
+
+  const fillDemo = () => setFormData(DEMO);
 
   useEffect(() => {
     if (isAuthenticated && user) {
@@ -165,6 +68,26 @@ function Login() {
           <div className="px-8 py-8">
             <h1 className="text-2xl font-bold text-white mb-1">Welcome back</h1>
             <p className="text-sm text-slate-400 mb-7">Sign in to your account to continue.</p>
+
+            {/* Demo credentials banner */}
+            <div className="mb-6 rounded-lg border border-blue-500/25 bg-blue-500/10 px-4 py-3">
+              <p className="text-xs font-medium text-blue-400 mb-2">Demo credentials</p>
+              <div className="space-y-1 text-xs text-slate-400 font-mono">
+                <div>
+                  <span className="text-slate-500">Email  </span> {DEMO.email}
+                </div>
+                <div>
+                  <span className="text-slate-500">Pass   </span> {DEMO.password}
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={fillDemo}
+                className="mt-3 w-full rounded-md border border-blue-500/30 bg-blue-500/15 px-3 py-1.5 text-xs font-medium text-blue-400 transition hover:bg-blue-500/25 active:scale-95"
+              >
+                Fill credentials
+              </button>
+            </div>
 
             <form onSubmit={handleSubmit} className="space-y-5">
 
@@ -240,4 +163,4 @@ function Login() {
   );
 }
 
-export default Login; 
+export default Login;

@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../features/auth/authThunk";
 import { clearError } from "../features/auth/authSlice";
 
+const DEMO = { email: "owner@test.com", password: "Password@1" };
+
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,6 +44,8 @@ const Login = () => {
     );
   };
 
+  const fillDemo = () => setFormData(DEMO);
+
   return (
     <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-sm">
@@ -63,6 +67,26 @@ const Login = () => {
           <div className="px-8 py-8">
             <h1 className="text-2xl font-bold text-white mb-1">Store Owner Login</h1>
             <p className="text-sm text-slate-400 mb-7">Sign in to manage your store.</p>
+
+            {/* Demo credentials banner */}
+            <div className="mb-6 rounded-lg border border-blue-500/25 bg-blue-500/10 px-4 py-3">
+              <p className="text-xs font-medium text-blue-400 mb-2">Demo credentials</p>
+              <div className="space-y-1 text-xs text-slate-400 font-mono">
+                <div>
+                  <span className="text-slate-500">Email  </span> {DEMO.email}
+                </div>
+                <div>
+                  <span className="text-slate-500">Pass   </span> {DEMO.password}
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={fillDemo}
+                className="mt-3 w-full rounded-md border border-blue-500/30 bg-blue-500/15 px-3 py-1.5 text-xs font-medium text-blue-400 transition hover:bg-blue-500/25 active:scale-95"
+              >
+                Fill credentials
+              </button>
+            </div>
 
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Email */}
