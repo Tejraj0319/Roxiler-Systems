@@ -87,7 +87,7 @@ const ChangePassword = () => {
                   name="oldPassword"
                   value={oldPassword}
                   onChange={handleChange}
-                  placeholder="••••••••"
+                  placeholder="Enter Password..."
                   required
                   className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none transition focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                 />
@@ -103,7 +103,7 @@ const ChangePassword = () => {
                   name="newPassword"
                   value={newPassword}
                   onChange={handleChange}
-                  placeholder="••••••••"
+                  placeholder="Enter Password..."
                   required
                   className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none transition focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                 />
@@ -119,7 +119,7 @@ const ChangePassword = () => {
                   name="confirmPassword"
                   value={confirmPassword}
                   onChange={handleChange}
-                  placeholder="••••••••"
+                  placeholder="Enter Password..."
                   required
                   className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none transition focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                 />

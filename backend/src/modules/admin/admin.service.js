@@ -80,18 +80,54 @@ const getUsers = async (query) => {
 
 
 const getUserById = async (id) => {
-    return prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
         where: {
             id: Number(id),
         },
-        select: {
-            id: true,
-            name: true,
-            email: true,
-            address: true,
-            role: true,
+        include: {
+            stores: {
+                include: {
+                    ratings: true,
+                },
+            },
         },
     });
+
+    if (!user) {
+        throw new Error("User not found");
+    }
+
+    let averageRating = null;
+
+    if (
+        user.role === "STORE_OWNER" &&
+        user.stores.length
+    ) {
+        const ratings =
+            user.stores[0].ratings;
+
+        averageRating =
+            ratings.length > 0
+                ? Number(
+                    (
+                        ratings.reduce(
+                            (sum, rating) =>
+                                sum + rating.rating,
+                            0
+                        ) / ratings.length
+                    ).toFixed(1)
+                )
+                : 0;
+    }
+
+    return {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        address: user.address,
+        role: user.role,
+        averageRating,
+    };
 };
 
 

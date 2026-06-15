@@ -61,72 +61,21 @@ const getUsers = async (req, res) => {
 };
 
 
-// const getUserById = async (req, res) => {
-//     try {
-//         const user = await AdminService.getUserById(
-//             req.params.id
-//         );
-//         return res.json({
-//             success: true,
-//             data: user,
-//         });
-//     } catch (error) {
-//         return res.status(500).json({
-//             success: false,
-//             message: error.message,
-//         });
-//     }
-// };
-
-const getUserById = async (id) => {
-    const user = await prisma.user.findUnique({
-        where: {
-            id: Number(id),
-        },
-        include: {
-            stores: {
-                include: {
-                    ratings: true,
-                },
-            },
-        },
-    });
-
-    if (!user) {
-        throw new Error("User not found");
+const getUserById = async (req, res) => {
+    try {
+        const user = await AdminService.getUserById(
+            req.params.id
+        );
+        return res.json({
+            success: true,
+            data: user,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        });
     }
-
-    let averageRating = null;
-
-    if (
-        user.role === "STORE_OWNER" &&
-        user.stores.length
-    ) {
-        const ratings =
-            user.stores[0].ratings;
-
-        averageRating =
-            ratings.length > 0
-                ? Number(
-                    (
-                        ratings.reduce(
-                            (sum, rating) =>
-                                sum + rating.rating,
-                            0
-                        ) / ratings.length
-                    ).toFixed(1)
-                )
-                : 0;
-    }
-
-    return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        address: user.address,
-        role: user.role,
-        averageRating,
-    };
 };
 
 

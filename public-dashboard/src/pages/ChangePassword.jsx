@@ -217,7 +217,7 @@ function ChangePassword() {
                   name="oldPassword"
                   value={formData.oldPassword}
                   onChange={handleChange}
-                  placeholder="••••••••"
+                  placeholder="Enter Password..."
                   className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none transition focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                 />
               </div>
@@ -235,7 +235,7 @@ function ChangePassword() {
                   name="newPassword"
                   value={formData.newPassword}
                   onChange={handleChange}
-                  placeholder="••••••••"
+                  placeholder="Enter Password..."
                   className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none transition focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                 />
               </div>
@@ -250,7 +250,7 @@ function ChangePassword() {
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  placeholder="••••••••"
+                  placeholder="Enter Password..."
                   className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none transition focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                 />
               </div>
