@@ -1,0 +1,14 @@
+
+connection str: 
+
+mysql://34fpF3S6nmt7ton.root:9GFaga3M7TknkEO@gateway01.ap-southeast-1.prod.alicloud.tidbcloud.com:4000/sys
+
+
+
+HOST      = gateway01ap-southeast-1.prod.alicloud.tidbcloud.com
+PORT      = 4000
+USERNAME  = 34fpF3s8rmt7ton.root
+password:- 9GFaga3M7TknkEOu
+DATABASE  = roxiler
+
+https://roxiler-systems-1jrx.onrender.com
